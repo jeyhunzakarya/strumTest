@@ -13,11 +13,22 @@ const loadImagesHelper =(parentDiv)=> {
     let msgContainer = document.createElement("div");
     msgContainer.id = "img" + (counter)
 
+    const pfp = document.createElement("img")
+    // pfp.src = msg.image
+    pfp.src = `https://source.unsplash.com/random/800x800/?img=${counter}`
+    pfp.style.height = '50px'
+    pfp.style.width = "50px"
+    pfp.style.float = "left"
+    msgContainer.append(pfp)
+
+
     const author = document.createElement("h1")
-    author.style="width: 200px;word-wrap: break-word;text-align : left"
+    author.style="width: 200px;word-wrap: break-word;text-align : left ; position : relative; margin-left: 60px"
     const authorNode = document.createTextNode(msg.name);
     author.append(authorNode)
     msgContainer.append(author)
+
+    
     
     const txt = document.createElement("p")
     txt.style="width: 800px;word-wrap: break-word;text-align : left"
@@ -26,7 +37,9 @@ const loadImagesHelper =(parentDiv)=> {
     msgContainer.append(txt)
 
     const imgWrapper = document.createElement("img")
-    imgWrapper.src = msg.image
+    // imgWrapper.src = msg.image
+    console.log(counter);    
+    imgWrapper.src= `https://source.unsplash.com/random/800x800/?img=${counter}`
     imgWrapper.style.height = `${Math.random()*300}px`
     imgWrapper.style.width = "100px"
     imgWrapper.style.marginTop = "20px"
