@@ -10,9 +10,8 @@ export default class App {
     render () {
         if (this.elem) this.elem.innerHTML = `
         <section data-component="app">
-        <h1>App Component</h1> 
         <div id = "msgBody">
-        <div id="myList" style="overflow-y : scroll; height:400px"></div>
+        <div id="messagesContainer" style="overflow-y : scroll; height:550px"></div>
         </div>
         </section>
         `
