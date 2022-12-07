@@ -22,20 +22,30 @@ const loadImagesInitial = async()=>{
     await getSingle(counter)
         .then(response=>{
           let msg = response.data
-          console.log(msg.content);
-          let li = document.createElement("li");
-          li.id = "img" + (counter)
-          const txt = document.createElement("h1")
+
+          let msgContainer = document.createElement("div");
+          msgContainer.id = "img" + (counter)
+
+          const author = document.createElement("h1")
+          author.style="width: 200px;word-wrap: break-word;text-align : left"
+          const authorNode = document.createTextNode(msg.name);
+          author.append(authorNode)
+          msgContainer.append(author)
+          
+          const txt = document.createElement("p")
+          txt.style="width: 800px;word-wrap: break-word;text-align : left"
           const textNode = document.createTextNode(msg.content);
           txt.append(textNode)
-          li.append(txt)
+          msgContainer.append(txt)
+
           const imgWrapper = document.createElement("img")
           imgWrapper.src = msg.image
           imgWrapper.style.height = "100px"
           imgWrapper.style.width = "100px"
           imgWrapper.style.marginTop = "20px"
-          li.append(imgWrapper)
-          list.prepend(li)
+          msgContainer.append(imgWrapper)
+
+          list.prepend(msgContainer)
           allMsgs.push(msg)  
         })
         .then(_=>list.scrollTop = list.scrollHeight)
@@ -50,20 +60,32 @@ const loadImages =async ()=>{
     await getSingle(counter)
         .then(response=>{
           let msg = response.data
-          let li = document.createElement("li");
-          li.id = "img" + (counter)
-          const txt = document.createElement("h1")
+
+          let msgContainer = document.createElement("div");
+          msgContainer.id = "img" + (counter)
+
+          const author = document.createElement("h1")
+          author.style="width: 200px;word-wrap: break-word;text-align : left"
+          const authorNode = document.createTextNode(msg.name);
+          author.append(authorNode)
+          msgContainer.append(author)
+
+          const txt = document.createElement("p")
+          txt.style="width: 800px;word-wrap: break-word;text-align : left"
           const textNode = document.createTextNode(msg.content);
           txt.append(textNode)
-          li.append(txt)
+          msgContainer.append(txt)
+
           const imgWrapper = document.createElement("img")
           imgWrapper.src = msg.image
           imgWrapper.style.height = "100px"
           imgWrapper.style.width = "100px"
           imgWrapper.style.marginTop = "20px"
-          li.append(imgWrapper)
-          list.prepend(li)
+          msgContainer.append(imgWrapper)
+
+          list.prepend(msgContainer)
           allMsgs.push(msg)  
+
         })
   counter++
   }

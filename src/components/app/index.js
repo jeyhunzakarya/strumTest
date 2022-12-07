@@ -12,7 +12,7 @@ export default class App {
         <section data-component="app">
         <h1>App Component</h1> 
         <div id = "msgBody">
-        <ul id="myList" style="overflow-y : scroll; height:400px"></ul>
+        <div id="myList" style="overflow-y : scroll; height:400px"></div>
         </div>
         </section>
         `
