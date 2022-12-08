@@ -38,7 +38,6 @@ const loadImagesHelper =(parentDiv)=> {
 
     const imgWrapper = document.createElement("img")
     // imgWrapper.src = msg.image
-    console.log(counter);    
     imgWrapper.src= `https://source.unsplash.com/random/800x800/?img=${counter}`
     imgWrapper.style.height = `${Math.random()*300}px`
     imgWrapper.style.width = "100px"
@@ -65,6 +64,15 @@ const loadMessages = ()=>{
   elem.scrollIntoView()
 }
 
+const loadNewestMsgs = ()=> {
+  let list = document.getElementById("messagesContainer");
+  list.innerHTML = ""
+  counter = 0
+  loadImagesHelper(list)
+  list.scrollTop = list.scrollHeight
+}
+
+
 window.addEventListener('load', () => {
   const app = new App(document.getElementById('app'))
   app.render() 
@@ -72,8 +80,11 @@ window.addEventListener('load', () => {
   let toBottom = document.createElement("button");
   toBottom.innerHTML = "↓ Newest messages"
   toBottom.onclick = ()=>{
-    list.scrollTo(0,list.scrollHeight)
+    loadNewestMsgs()
+    // list.scrollTo(0,list.scrollHeight)
   }
+
+
   toBottom.style.position = "absolute"
   toBottom.style.marginTop = "0px"
   toBottom.classList = "arrowDown"
