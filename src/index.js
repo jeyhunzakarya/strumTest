@@ -14,7 +14,6 @@ const loadImagesHelper =(parentDiv)=> {
     msgContainer.id = "img" + (counter)
 
     const pfp = document.createElement("img")
-    // pfp.src = msg.image
     pfp.src = `https://source.unsplash.com/random/800x800/?img=${counter}`
     pfp.style.height = '50px'
     pfp.style.width = "50px"
@@ -37,7 +36,6 @@ const loadImagesHelper =(parentDiv)=> {
     msgContainer.append(txt)
 
     const imgWrapper = document.createElement("img")
-    // imgWrapper.src = msg.image
     imgWrapper.src= `https://source.unsplash.com/random/800x800/?img=${counter}`
     imgWrapper.style.height = `${Math.random()*300}px`
     imgWrapper.style.width = "100px"
@@ -63,9 +61,7 @@ const loadMessages = ()=>{
   let list = document.getElementById("childMessagesContainer");
   const height = mainList.scrollTop
   var temp = $(list).height();
-  // const elem = list.childNodes[0]
   loadImagesHelper(list)
-  // elem.scrollIntoView()
   $(mainList).scrollTop($(list).height()-temp + height);
 }
 
@@ -77,14 +73,6 @@ const loadNewestMsgs = ()=> {
   list.scrollTop = list.scrollHeight
 }
 
-// function loadNewPage() {
-//   var temp = $(document).height();
-//     page++;
-//     $(".container").prepend('<div class="big-box"><h1>Page ' + page + '</h1></div>');
-//     $(document).scrollTop($(document).height()-temp);
-//     isLoading = false;
-// }
-
 window.addEventListener('load', () => {
   const app = new App(document.getElementById('app'))
   app.render() 
@@ -93,7 +81,6 @@ window.addEventListener('load', () => {
   toBottom.innerHTML = "↓ Newest messages"
   toBottom.onclick = ()=>{
     loadNewestMsgs()
-    // list.scrollTo(0,list.scrollHeight)
   }
 
 
@@ -102,16 +89,9 @@ window.addEventListener('load', () => {
   toBottom.classList = "arrowDown"
   document.getElementById("msgBody").appendChild(toBottom)
   loadMessagesInitial()
-  // list.addEventListener('scroll',()=>{
-  //   if(list.scrollTop ==0){
-  //     loadMessages()
-  //   }
-  // })
 
   $(list).scroll(function() {
-    console.log($(list).scrollTop());
     if($(list).scrollTop() <3000) {
-      console.log("scrollin");
       loadMessages()
     }
   });
