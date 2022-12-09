@@ -60,9 +60,10 @@ const loadMessages = ()=>{
   let mainList = document.getElementById("messagesContainer");
   let list = document.getElementById("childMessagesContainer");
   const height = mainList.scrollTop
-  var temp = $(list).height();
+  const initClientHeight = list.clientHeight;
   loadImagesHelper(list)
-  $(mainList).scrollTop($(list).height()-temp + height);
+  const finalClientHeight = list.clientHeight;
+  mainList.scrollTop = finalClientHeight - initClientHeight + height
 }
 
 const loadNewestMsgs = ()=> {
@@ -90,8 +91,9 @@ window.addEventListener('load', () => {
   document.getElementById("msgBody").appendChild(toBottom)
   loadMessagesInitial()
 
-  $(list).scroll(function() {
-    if($(list).scrollTop() <3000) {
+  list.onscroll = (function() {
+    console.log(list.scrollTop);
+    if(list.scrollTop <3000) {
       loadMessages()
     }
   });
