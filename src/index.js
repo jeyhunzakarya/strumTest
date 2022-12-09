@@ -43,7 +43,6 @@ const loadImagesHelper =(parentDiv)=> {
     imgWrapper.style.width = "100px"
     imgWrapper.style.marginTop = "20px"
     msgContainer.append(imgWrapper)
-
     parentDiv.prepend(msgContainer)
     counter++
   }
@@ -51,17 +50,23 @@ const loadImagesHelper =(parentDiv)=> {
 
 
 const loadMessagesInitial = ()=>{
-  let list = document.getElementById("messagesContainer");
+  let list = document.getElementById("childMessagesContainer");
+  list.style.flexDirection = "column-reverse"
   loadImagesHelper(list)  
-  list.scrollTop = list.scrollHeight
+  let mainList = document.getElementById("messagesContainer");
+  mainList.style.flexDirection = "column-reverse"
+  mainList.scrollTop = mainList.scrollHeight
   }
 
 const loadMessages = ()=>{
-  let list = document.getElementById("messagesContainer");
-  const elem = list.childNodes[0]
+  let mainList = document.getElementById("messagesContainer");
+  let list = document.getElementById("childMessagesContainer");
+  const height = mainList.scrollTop
+  var temp = $(list).height();
+  // const elem = list.childNodes[0]
   loadImagesHelper(list)
-  list.scrollTop = list.scrollHeight
-  elem.scrollIntoView()
+  // elem.scrollIntoView()
+  $(mainList).scrollTop($(list).height()-temp + height);
 }
 
 const loadNewestMsgs = ()=> {
@@ -72,6 +77,13 @@ const loadNewestMsgs = ()=> {
   list.scrollTop = list.scrollHeight
 }
 
+// function loadNewPage() {
+//   var temp = $(document).height();
+//     page++;
+//     $(".container").prepend('<div class="big-box"><h1>Page ' + page + '</h1></div>');
+//     $(document).scrollTop($(document).height()-temp);
+//     isLoading = false;
+// }
 
 window.addEventListener('load', () => {
   const app = new App(document.getElementById('app'))
@@ -90,9 +102,17 @@ window.addEventListener('load', () => {
   toBottom.classList = "arrowDown"
   document.getElementById("msgBody").appendChild(toBottom)
   loadMessagesInitial()
-  list.addEventListener('scroll',()=>{
-    if(list.scrollTop ==0){
+  // list.addEventListener('scroll',()=>{
+  //   if(list.scrollTop ==0){
+  //     loadMessages()
+  //   }
+  // })
+
+  $(list).scroll(function() {
+    console.log($(list).scrollTop());
+    if($(list).scrollTop() <3000) {
+      console.log("scrollin");
       loadMessages()
     }
-  })
+  });
 })

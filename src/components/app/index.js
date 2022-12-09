@@ -11,7 +11,9 @@ export default class App {
         if (this.elem) this.elem.innerHTML = `
         <section data-component="app">
         <div id = "msgBody">
-        <div id="messagesContainer" style="overflow-y : scroll; height:550px"></div>
+        <div id="messagesContainer" style="overflow-y : scroll; height:550px">
+        <div id = "childMessagesContainer"  style= "transform : scaleY(1)"> </div>
+        </div>
         </div>
         </section>
         `
